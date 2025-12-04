@@ -1,0 +1,11 @@
+# Icon Placeholder
+
+Place your `icon.png` file here (256x256 or 512x512 pixels recommended).
+
+The icon will be used for:
+- Desktop window icon
+- System tray icon
+- Installer icon (Windows .exe, Mac .dmg, Linux AppImage)
+
+You can create an icon from your existing logo or use an icon generator tool.
+
