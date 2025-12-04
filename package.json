@@ -1,0 +1,83 @@
+{
+  "name": "ocs-taskmanager-desktop",
+  "version": "1.0.0",
+  "description": "OCS Task Manager Desktop App",
+  "main": "electron.js",
+  "scripts": {
+    "start": "electron .",
+    "dev": "electron . --dev",
+    "prebuild": "npm install",
+    "pack": "electron-builder --dir",
+    "dist": "electron-builder",
+    "dist:win": "electron-builder --win",
+    "dist:mac": "electron-builder --mac",
+    "dist:linux": "electron-builder --linux",
+    "dist:win-mac": "electron-builder --win --mac",
+    "dist:all": "electron-builder --win --mac --linux",
+    "clean": "rmdir /s /q dist 2>nul || rmdir dist 2>nul || true",
+    "rebuild": "npm run clean && npm install && npm run dist:win"
+  },
+  "devDependencies": {
+    "electron": "^30.0.0",
+    "electron-builder": "^24.0.0"
+  },
+  "dependencies": {
+    "electron-updater": "^6.1.7",
+    "electron-store": "^10.1.0"
+  },
+  "build": {
+    "appId": "com.ocs.taskmanager",
+    "productName": "OCS Task Manager",
+    "icon": "icon.png",
+    "directories": {
+      "output": "dist"
+    },
+    "publish": null,
+    "files": [
+      "electron.js",
+      "icon.png",
+      "preload.js",
+      "../build/**/*",
+      "!../build/**/*.map"
+    ],
+    "win": {
+      "target": [
+        {
+          "target": "nsis",
+          "arch": [
+            "x64"
+          ]
+        }
+      ],
+      "icon": "icon.png",
+      "publisherName": "OCS Solutions"
+    },
+    "mac": {
+      "target": [
+        {
+          "target": "dmg",
+          "arch": [
+            "x64",
+            "arm64"
+          ]
+        }
+      ],
+      "icon": "icon.png",
+      "category": "public.app-category.productivity"
+    },
+    "linux": {
+      "target": [
+        "AppImage"
+      ],
+      "icon": "icon.png",
+      "category": "Office"
+    },
+    "nsis": {
+      "oneClick": false,
+      "allowToChangeInstallationDirectory": true,
+      "createDesktopShortcut": true,
+      "createStartMenuShortcut": true
+    }
+  }
+}
+

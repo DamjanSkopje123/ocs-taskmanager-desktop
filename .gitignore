@@ -1,0 +1,27 @@
+# Code signing certificates (NEVER commit these!)
+*.pfx
+*.p12
+*.pem
+*.key
+certs/
+certificates/
+
+# Build outputs
+dist/
+build/
+
+# Node modules
+node_modules/
+
+# Logs
+*.log
+npm-debug.log*
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# IDE
+.vscode/
+.idea/
+
