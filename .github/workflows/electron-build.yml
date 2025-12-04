@@ -19,10 +19,32 @@ jobs:
         with:
           node-version: 18
 
-      - name: Create build directory structure
+      - name: Create minimal build structure
         run: |
           mkdir -p ../build
-          echo "Created build directory structure"
+          # Create a minimal index.html that redirects to server
+          cat > ../build/index.html << 'EOF'
+          <!DOCTYPE html>
+          <html>
+          <head>
+            <meta charset="utf-8">
+            <title>OCS Task Manager</title>
+            <script>
+              // Redirect to server URL
+              window.location.href = 'https://task.ocslive.com';
+            </script>
+          </head>
+          <body>
+            <p>Loading OCS Task Manager...</p>
+            <script>
+              setTimeout(function() {
+                window.location.href = 'https://task.ocslive.com';
+              }, 100);
+            </script>
+          </body>
+          </html>
+          EOF
+          echo "Created minimal build structure"
 
       - name: Install Electron dependencies
         run: npm install
