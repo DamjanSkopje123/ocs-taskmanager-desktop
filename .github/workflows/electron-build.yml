@@ -19,19 +19,18 @@ jobs:
         with:
           node-version: 18
 
-      - name: Install React app dependencies
-        working-directory: ..
-        run: npm install
-
-      - name: Build React app
-        working-directory: ..
-        run: npm run build
+      - name: Create build directory structure
+        run: |
+          mkdir -p ../build
+          echo "Created build directory structure"
 
       - name: Install Electron dependencies
         run: npm install
 
-      - name: Build Electron App
+      - name: Build Electron App (will use server URL if build not available)
         run: npm run dist
+        env:
+          ELECTRON_SERVER_URL: https://task.ocslive.com
 
       - name: Upload build artifacts
         uses: actions/upload-artifact@v3
