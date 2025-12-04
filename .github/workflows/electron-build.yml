@@ -19,7 +19,15 @@ jobs:
         with:
           node-version: 18
 
-      - name: Install dependencies
+      - name: Install React app dependencies
+        working-directory: ..
+        run: npm install
+
+      - name: Build React app
+        working-directory: ..
+        run: npm run build
+
+      - name: Install Electron dependencies
         run: npm install
 
       - name: Build Electron App
