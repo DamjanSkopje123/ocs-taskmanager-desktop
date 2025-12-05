@@ -19,44 +19,14 @@ jobs:
         with:
           node-version: 18
 
-      - name: Create minimal build structure
-        run: |
-          mkdir -p ../build
-          # Create a minimal index.html that redirects to server
-          cat > ../build/index.html << 'EOF'
-          <!DOCTYPE html>
-          <html>
-          <head>
-            <meta charset="utf-8">
-            <title>OCS Task Manager</title>
-            <script>
-              // Redirect to server URL
-              window.location.href = 'https://task.ocslive.com';
-            </script>
-          </head>
-          <body>
-            <p>Loading OCS Task Manager...</p>
-            <script>
-              setTimeout(function() {
-                window.location.href = 'https://task.ocslive.com';
-              }, 100);
-            </script>
-          </body>
-          </html>
-          EOF
-          echo "Created minimal build structure"
-
-      - name: Install Electron dependencies
+      - name: Install dependencies
         run: npm install
 
-      - name: Build Electron App (will use server URL if build not available)
+      - name: Build Electron App
         run: npm run dist
-        env:
-          ELECTRON_SERVER_URL: https://task.ocslive.com
 
       - name: Upload build artifacts
         uses: actions/upload-artifact@v3
         with:
           name: ${{ matrix.os }}-build
           path: dist/
-

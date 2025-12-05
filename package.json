@@ -37,8 +37,7 @@
       "electron.js",
       "icon.png",
       "preload.js",
-      "../build/**/*",
-      "!../build/**/*.map"
+      "scripts/**/*"
     ],
     "win": {
       "target": [
